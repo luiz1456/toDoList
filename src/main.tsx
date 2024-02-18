@@ -8,17 +8,17 @@ import { ConteudoTarefa } from './Pages/ConteudoTarefa/index.tsx'
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: 'toDoList/',
     element: <App />
   },
   {
-    path: 'tarefa/:id',
+    path: 'toDoList/tarefa/:id/',
     element: <ConteudoTarefa />
   }
 ])
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+      <RouterProvider router={router} />
   </React.StrictMode>,
 )
