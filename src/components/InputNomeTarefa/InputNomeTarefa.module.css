@@ -1,0 +1,35 @@
+.containerInputs {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid ;
+    padding: 20px;
+    border-radius: 8px;
+    align-items: start;
+}
+
+.containerInputs input {
+    width: 100%;
+    padding: 8px;
+    margin: 12px 0;
+    border-radius: 4px;
+}
+
+.menssagemErro {
+    color: #f00;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 8px;
+    height: 20px;
+}
+
+.form {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.botao {
+    border-radius: 8px;
+    padding: 8px;
+}
