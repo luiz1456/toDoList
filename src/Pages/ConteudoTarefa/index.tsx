@@ -13,7 +13,7 @@ export type Item = {
 export function ConteudoTarefa() {
   const params = new URL(window.location.href)
   const listaDeTarefas: Array<Itarefa> = JSON.parse(localStorage.getItem('tarefas') || '[]')
-  const tarefaAtual: Itarefa = listaDeTarefas.find(tarefa => params.pathname === `/tarefa/${tarefa.id}`)!
+  const tarefaAtual: Itarefa = listaDeTarefas.find(tarefa => params.pathname === `/toDoList/tarefa/${tarefa.id}`)!
   const [listaItens, setListaItens] = useState(tarefaAtual.conteudoTarefa as Array<Item>)
 
   return (
