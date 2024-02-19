@@ -2,17 +2,17 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { RouterProvider, createHashRouter } from 'react-router-dom'
 
 import { ConteudoTarefa } from './Pages/ConteudoTarefa/index.tsx'
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
-    path: 'toDoList/',
+    path: '/',
     element: <App />
   },
   {
-    path: 'toDoList/tarefa/:id/',
+    path: 'tarefa/:id',
     element: <ConteudoTarefa />
   }
 ])
