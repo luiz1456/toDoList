@@ -1,14 +1,14 @@
-import { useState } from "react"
+import { FormEvent, useState } from "react"
 import { novaTarefa } from "../../service/gerarTarefa"
 import { Itarefa } from "../../service/gerarTarefa"
 
-import styles from './InputNomeTarefa.module.css'
+import styles from './InputNovaTarefa.module.css'
 
 interface Iprops {
     setListaTarefas: React.Dispatch<React.SetStateAction<Array<Itarefa>>>
     setAbrirInputNovaTarefa: React.Dispatch<React.SetStateAction<boolean>>
 }
-export default function Inputs({ setListaTarefas, setAbrirInputNovaTarefa }: Iprops) {
+export default function Input ({ setListaTarefas, setAbrirInputNovaTarefa }: Iprops) {
     const [nomeTarefa, setNomeTarefa] = useState<string>('')
     const [mensagemErro, setMenssagemErro] = useState<string>('')
 
@@ -18,7 +18,8 @@ export default function Inputs({ setListaTarefas, setAbrirInputNovaTarefa }: Ipr
             setMenssagemErro('')
         }
     }
-    const handleCriarTarefa = (nome: string) => {
+    const handleCriarTarefa = (nome: string, event: FormEvent) => {
+        event.preventDefault()
         if (nomeTarefa.trim()) {
             novaTarefa({ nome, setListaTarefas })
             setAbrirInputNovaTarefa(false)
@@ -30,7 +31,10 @@ export default function Inputs({ setListaTarefas, setAbrirInputNovaTarefa }: Ipr
     }
 
     return (
-        <div className={`limitarLargura ${styles.containerInputs}`}>
+        <form
+            className={`limitarLargura ${styles.containerInputs}`}
+            onSubmit={(event) => handleCriarTarefa(nomeTarefa, event)}
+        >
             <label>Nome da Tarefa:</label>
             <div className={styles.form}>
                 <input
@@ -42,10 +46,10 @@ export default function Inputs({ setListaTarefas, setAbrirInputNovaTarefa }: Ipr
                 />
                 <button
                     className={styles.botao}
-                    onClick={() => handleCriarTarefa(nomeTarefa)}
+                    type="submit"
                 >criar</button>
             </div>
             <p className={styles.menssagemErro}>{mensagemErro}</p>
-        </div>
+        </form>
     )
 }

@@ -1,15 +1,13 @@
-import { Itarefa } from "../../service/gerarTarefa"
+import { Itarefa, IsubTarefa } from "../../service/gerarTarefa"
 import { FormEvent, useState } from 'react';
-import { Item } from "../../Pages/ConteudoTarefa";
 import { atualizarLista } from "../../service/atualizarListaTarefas";
-
 
 type Iprops = {
   tarefaAtual: Itarefa
-  setListaItens: React.Dispatch<React.SetStateAction<Array<Item>>>
+  setSubTarefasPendentes: React.Dispatch<React.SetStateAction<Array<IsubTarefa>>>
 }
 
-export default function InputItemTarefa({ tarefaAtual, setListaItens }: Iprops) {
+export default function InputSubTarefa({ tarefaAtual, setSubTarefasPendentes }: Iprops) {
   const [valorInput, setValorInput] = useState('')
 
   const handleChange = (textoInput: string) => {
@@ -18,14 +16,14 @@ export default function InputItemTarefa({ tarefaAtual, setListaItens }: Iprops) 
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    addItem(valorInput)
+    addSubTarefa(valorInput)
     setValorInput('')
   }
 
-  const addItem = (item: string) => {
-    const novoItem: Item = { id: new Date().getTime(), item: item, concluido:false }
-    tarefaAtual.conteudoTarefa.push(novoItem)
-    setListaItens([...tarefaAtual.conteudoTarefa])
+  const addSubTarefa = (subTarefa: string) => {
+    const novaSubTarefa: IsubTarefa = { id: new Date().getTime(), subTarefa: subTarefa }
+    tarefaAtual.conteudoTarefa.pendentes.push(novaSubTarefa)
+    setSubTarefasPendentes([...tarefaAtual.conteudoTarefa.pendentes])
     atualizarLista({tarefaAtual})
   }
 
@@ -33,7 +31,7 @@ export default function InputItemTarefa({ tarefaAtual, setListaItens }: Iprops) 
     <form onSubmit={(e) => handleSubmit(e)}>
       <input
         type="text"
-        name='conteudoItem'
+        name='conteudoSubTarefa'
         value={valorInput}
         onChange={(e) => handleChange(e.target.value)}
       />

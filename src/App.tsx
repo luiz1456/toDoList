@@ -1,23 +1,20 @@
 import { useState } from "react"
-import Footer from "./components/Footer"
 import Header from "./components/Header"
-import Inputs from "./components/InputNomeTarefa"
+import Input from "./components/InputNovaTarefa"
 import { Itarefa } from "./service/gerarTarefa"
 import { Link } from "react-router-dom"
 import { deletarTarefa } from "./service/deletarTarefa"
-
 import styles from './App.module.css'
 
 function App() {
   const listaTarefasLocalStorage: Array<Itarefa> = JSON.parse(localStorage.getItem('tarefas') || '[]')
-
   const [listaTarefas, setListaTarefas] = useState(listaTarefasLocalStorage)
   const [abrirInputNovaTarefa, setAbrirInputNovaTarefa] = useState(false)
 
   return (
     <>
       <Header />
-      {abrirInputNovaTarefa && <Inputs
+      {abrirInputNovaTarefa && <Input
         setListaTarefas={setListaTarefas}
         setAbrirInputNovaTarefa={setAbrirInputNovaTarefa}
       />}
@@ -43,7 +40,6 @@ function App() {
           })}
         </div>
       </div>
-      <Footer />
     </>
   )
 }
